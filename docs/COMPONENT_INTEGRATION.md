@@ -373,5 +373,8 @@ Currently integrated components are:
 - [TrustyAI](https://github.com/opendatahub-io/trustyai-service-operator)
 - [Workbenches](https://github.com/opendatahub-io/notebooks)
 - [Feast Operator](https://github.com/opendatahub-io/feast)
+- [LLama Stack Operator](https://github.com/opendatahub-io/llama-stack-operator)
+- [MLflow Operator](https://github.com/opendatahub-io/mlflow-operator)
+- [Spark Operator](https://github.com/apache/spark-operator)
 
 The particular controller implementations for the listed components are located in the `internal/controller/components` directory and the corresponding internal component APIs are located in `api/component/v1alpha1`.

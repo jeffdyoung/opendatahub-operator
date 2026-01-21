@@ -79,6 +79,7 @@ The following components are **automatically integrated** by the ODH operator ba
 | **Ray** | [opendatahub-io/kuberay](https://github.com/opendatahub-io/kuberay) | Distributed computing framework | Optional |
 | **Training Operator** | [opendatahub-io/training-operator](https://github.com/opendatahub-io/training-operator) | ML training job management | Optional |
 | **Trainer** | [opendatahub-io/trainer](https://github.com/opendatahub-io/trainer) | ML training job management | Optional |
+| **Spark Operator** | [apache/spark-operator](https://github.com/apache/spark-operator) | Apache Spark on Kubernetes | Optional |
 | **Feast Operator** | [opendatahub-io/feast](https://github.com/opendatahub-io/feast) | Feature store for ML | Optional |
 | **Model Registry Operator** | [opendatahub-io/model-registry](https://github.com/opendatahub-io/model-registry-operator) | Model versioning and registry | Optional |
 | **TrustyAI** | [opendatahub-io/trustyai-service-operator](https://github.com/opendatahub-io/trustyai-service-operator) | AI explainability and governance | Optional |
@@ -513,6 +514,10 @@ spec:
     feastoperator:
       managementState: Managed
     llamastackoperator:
+      managementState: Removed
+    mlflowoperator:
+      managementState: Removed
+    sparkoperator:
       managementState: Removed
 ```
 

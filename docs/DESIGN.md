@@ -79,8 +79,11 @@ List of currently integrated ODH components:
 | Feature Store (Feast) | `FeastOperator` |
 | KServe | `Kserve` |
 | Kueue | `Kueue` |
+| LLama Stack Operator | `LlamaStackOperator` |
+| MLflow Operator | `MLflowOperator` |
 | Model Registry | `ModelRegistry` |
 | Ray | `Ray` |
+| Spark Operator | `SparkOperator` |
 | Training Operator | `TrainingOperator` |
 | TrustyAI | `TrustyAI` |
 | Workbenches (IDEs) | `Workbenches` |
@@ -158,6 +161,8 @@ spec:
     llamastackoperator:
       managementState: Removed
     mlflowoperator:
+      managementState: Removed
+    sparkoperator:
       managementState: Removed
 ```
 
