@@ -4,6 +4,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/manager"
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 
+	connectionswebhook "github.com/opendatahub-io/opendatahub-operator/v2/internal/webhook/connections"
 	hardwareprofilewebhook "github.com/opendatahub-io/opendatahub-operator/v2/internal/webhook/hardwareprofile"
 	monitoringwebhook "github.com/opendatahub-io/opendatahub-operator/v2/internal/webhook/monitoring"
 	notebookwebhook "github.com/opendatahub-io/opendatahub-operator/v2/internal/webhook/notebook"
@@ -99,6 +100,15 @@ func RegisterWebhooks(mgr manager.Manager) error {
 		Name:   "hardwareprofile-deletion-validator",
 	}
 	if err := hwpDeletionValidator.SetupWithManager(mgr); err != nil {
+		return err
+	}
+
+	// Register Connection secret deletion validator webhook
+	connectionDeletionValidator := &connectionswebhook.DeletionValidator{
+		Client: mgr.GetAPIReader(),
+		Name:   "connection-secret-deletion-validator",
+	}
+	if err := connectionDeletionValidator.SetupWithManager(mgr); err != nil {
 		return err
 	}
 
