@@ -93,5 +93,14 @@ func RegisterWebhooks(mgr manager.Manager) error {
 		return err
 	}
 
+	// Register HardwareProfile deletion validator webhook
+	hwpDeletionValidator := &hardwareprofilewebhook.DeletionValidator{
+		Client: mgr.GetAPIReader(),
+		Name:   "hardwareprofile-deletion-validator",
+	}
+	if err := hwpDeletionValidator.SetupWithManager(mgr); err != nil {
+		return err
+	}
+
 	return nil
 }
