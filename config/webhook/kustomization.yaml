@@ -7,3 +7,6 @@ commonAnnotations:
 
 configurations:
 - kustomizeconfig.yaml
+
+patches:
+- path: patches/connection-secret-match-conditions.yaml
