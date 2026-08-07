@@ -11,6 +11,7 @@ import (
 	cr "github.com/opendatahub-io/opendatahub-operator/v2/internal/controller/components/registry"
 	mr "github.com/opendatahub-io/opendatahub-operator/v2/internal/controller/modules"
 	sr "github.com/opendatahub-io/opendatahub-operator/v2/internal/controller/services/registry"
+	"github.com/opendatahub-io/opendatahub-operator/v2/internal/webhook/connections"
 	"github.com/opendatahub-io/opendatahub-operator/v2/internal/webhook/dashboard"
 	dscv1webhook "github.com/opendatahub-io/opendatahub-operator/v2/internal/webhook/datasciencecluster/v1"
 	dscv2webhook "github.com/opendatahub-io/opendatahub-operator/v2/internal/webhook/datasciencecluster/v2"
@@ -48,6 +49,9 @@ func RegisterAllWebhooks(mgr ctrl.Manager) error {
 		}},
 		{name: "serving", register: serving.RegisterWebhooks, disabled: func() bool { return !cr.IsEnabled(componentApi.KserveComponentName) }},
 		{name: "notebook", register: notebookwebhook.RegisterWebhooks, disabled: func() bool { return !cr.IsEnabled(componentApi.WorkbenchesComponentName) }},
+		{name: "connections", register: connections.RegisterWebhooks, disabled: func() bool {
+			return !cr.IsEnabled(componentApi.KserveComponentName) && !cr.IsEnabled(componentApi.WorkbenchesComponentName)
+		}},
 		{name: "dashboard", register: dashboard.RegisterWebhooks, disabled: func() bool { return !cr.IsEnabled(componentApi.DashboardComponentName) }},
 	}
 

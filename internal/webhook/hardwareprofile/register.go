@@ -7,7 +7,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/webhook/admission"
 )
 
-// RegisterWebhooks registers the webhooks for hardware profile injection.
+// RegisterWebhooks registers the webhooks for hardware profile injection and deletion protection.
 //
 // Parameters:
 //   - mgr: The controller-runtime manager to register webhooks with.
@@ -19,6 +19,13 @@ func RegisterWebhooks(mgr ctrl.Manager) error {
 		Client:  mgr.GetAPIReader(),
 		Decoder: admission.NewDecoder(mgr.GetScheme()),
 		Name:    "hardwareprofile-injector",
+	}).SetupWithManager(mgr); err != nil {
+		return err
+	}
+
+	if err := (&DeletionValidator{
+		Client: mgr.GetAPIReader(),
+		Name:   "hardwareprofile-deletion-validator",
 	}).SetupWithManager(mgr); err != nil {
 		return err
 	}
